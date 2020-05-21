@@ -2,8 +2,8 @@
 lsp-jedi
 ========
 
-A Emacs LSP client for Python Jedi Language Server
-(a `lsp` client plugin for `lsp-mode` `Emacs` extension).
+A `Emacs`_  client for Python `Jedi Language Server`_
+(`LSP`_ client plugin for `lsp-mode`_  `Emacs`_ extension).
 
 Features
 --------
@@ -27,7 +27,6 @@ M-x package-install lsp-jedi
 Configure
 ---------
 .. code-block:: lisp
-   :linenos:
 
    (use-package lsp-jedi
      :ensure t
@@ -38,10 +37,10 @@ Configure
 
 License
 -------
-This project is licensed under the GNU GPL License version 3 - see the `LICENSE` file for details
+This project is licensed under the GNU GPL License version 3 - see the `LICENSE`_ file for details
 
 .. _`Emacs`: https://www.gnu.org/software/emacs/
 .. _`Jedi Language Server`: https://pypi.org/project/jedi-language-server/
-.. _`lsp`: https://langserver.org/
+.. _`LSP`: https://langserver.org/
 .. _`lsp-mode`: https://github.com/emacs-lsp/lsp-mode
 .. _`LICENSE`: https://github.com/fredcamps/lsp-jedi/blob/master/LICENSE
