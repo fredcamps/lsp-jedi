@@ -26,14 +26,15 @@ M-x package-install lsp-jedi
 
 Configure
 ---------
-.. code-block:: lisp
 
-   (use-package lsp-jedi
-     :ensure t
-     :pin melpa
-     :config
-     (with-eval-after-load "lsp-mode"
-       (add-to-list 'lsp-enabled-clients 'jedi)))
+.. code-block:: emacs-lisp
+
+  (use-package lsp-jedi
+    :ensure t
+    :pin melpa
+    :config
+    (with-eval-after-load "lsp-mode"
+      (add-to-list 'lsp-enabled-clients 'jedi)))
 
 License
 -------
