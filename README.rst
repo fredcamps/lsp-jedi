@@ -20,9 +20,11 @@ Features
 
 Install from repository
 -----------------------
-```
-M-x package-install lsp-jedi
-```
+
+.. code-block::
+
+   M-x package-install lsp-jedi
+
 
 Configure
 ---------
