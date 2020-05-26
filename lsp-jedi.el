@@ -1,9 +1,13 @@
-;;; lsp-jedi.el --- jedi configuration               -*- lexical-binding: t; -*-
+;;; lsp-jedi.el --- Jedi configuration               -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Fred Campos
 
 ;; Author: Fred Campos <fred.tecnologia@gmail.com>
-;; Keywords:
+;; Maintainer: Fred Campos
+;; Version: 0.0.1
+;; Package-Requires: ((emacs "25.1") (lsp-mode "6.0"))
+;; Homepage: http://github.com/fredcamps/lsp-jedi
+;; Keywords: language-server, tools, python, jedi, ide
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -86,7 +90,7 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
-(defcustom lsp-clients-python-library-directories '("/usr/")
+(defcustom lsp-jedi-python-library-directories '("/usr/")
   "List of directories which will be considered to be libraries."
   :risky t
   :type '(repeat string)
@@ -112,7 +116,7 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :major-modes '(python-mode cython-mode)
   :priority -1
   :server-id 'jedi
-  :library-folders-fn (lambda (_workspace) lsp-clients-python-library-directories)
+  :library-folders-fn (lambda (_workspace) lsp-jedi-python-library-directories)
   :initialized-fn (lambda (workspace)
                     (with-lsp-workspace
                      workspace
