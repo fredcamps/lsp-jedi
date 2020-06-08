@@ -32,8 +32,8 @@
 (defgroup lsp-jedi nil
   "LSP support for Python, using Jedi Python Language Server."
   :group 'lsp-mode
-  ;;:link '(url-link "https://github.com/fredcamps/lsp-jedi")
-  :package-version '(lsp-mode . "6.1"))
+  :link '(url-link "https://github.com/fredcamps/lsp-jedi")
+  :package-version '(lsp-mode . "6.0"))
 
 (defcustom lsp-jedi-enable t
   "If non-nil enable jedi-language-server."
