@@ -1,4 +1,4 @@
-;;; lsp-jedi.el --- Jedi configuration               -*- lexical-binding: t; -*-
+;;; lsp-jedi.el --- Lsp client plugin for Python Jedi Language Server    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Fred Campos
 
@@ -24,7 +24,7 @@
 
 ;;; Commentary:
 
-;; Jedi configuration
+;; A Emacs client for Python Jedi Language Server (LSP plugin for lsp-mode Emacs)
 
 ;;; Code:
 (require 'lsp-mode)
@@ -36,13 +36,13 @@
   :package-version '(lsp-mode . "6.1"))
 
 (defcustom lsp-jedi-enable t
-  "If non nill enable jedi-language-server."
+  "If non-nil enable jedi-language-server."
   :type 'boolean
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-executable-command "jedi-language-server"
   "Specify your jedi-language-server executable."
-  :type 'boolean
+  :type 'string
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-executable-args []
@@ -51,8 +51,8 @@
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-startup-message nil
-  "If non nill enables jedi-language-server's message on startup.."
-  :type 'bolean
+  "If non-nil enables jedi-language-server's message on startup.."
+  :type 'boolean
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-markup-kind-preferred nil
@@ -70,7 +70,7 @@
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-diagnostics-enable nil
-  "If non nill enables diagnostics provided by Jedi."
+  "If non-nil enables diagnostics provided by Jedi."
   :type 'boolean
   :group 'lsp-jedi)
 
