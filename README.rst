@@ -30,6 +30,7 @@ Configure
 ---------
 
 .. code-block:: emacs-lisp
+
   (use-package lsp-jedi
     :ensure t
     :config
