@@ -45,7 +45,7 @@
   :type 'string
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-executable-args []
+(defcustom lsp-jedi-executable-args nil
   "Specify the args list passed to your executable."
   :type '(repeat string)
   :group 'lsp-jedi)
