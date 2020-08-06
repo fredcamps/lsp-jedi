@@ -90,6 +90,19 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
+(defcustom lsp-jedi-completion-disable-snippets nil
+  "If your language client supports CompletionItem snippets but
+you don't like them, disable them by setting this option to a
+non-nil value."
+  :type 'boolean
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-auto-import-modules nil
+  "Modules that will not be analyzed but imported. Improves
+autocompletion performance but loses goto definition."
+  :type '(repeat (string))
+  :group 'lsp-jedi)
+
 (defcustom lsp-jedi-python-library-directories '("/usr/")
   "List of directories which will be considered to be libraries."
   :risky t
@@ -102,12 +115,14 @@ Run on in-memory document change (eg, while you're editing, without needing to s
     ("jedi.startupMessage" lsp-jedi-startup-message)
     ("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
     ("jedi.trace.server" lsp-jedi-trace-server)
+    ("jedi.jediSettings.autoImportModules" lsp-jedi-auto-import-modules)
     ("jedi.executable.command" lsp-jedi-executable-command)
     ("jedi.executable.args" lsp-jedi-executable-args)
-    ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable)
-    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open)
-    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change)
-    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save)))
+    ("jedi.completion.disableSnippets" lsp-jedi-completion-disable-snippets t)
+    ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable t)
+    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
+    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
+    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)))
 
 (lsp-register-client
  (make-lsp-client
