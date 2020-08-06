@@ -117,10 +117,7 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :priority -1
   :server-id 'jedi
   :library-folders-fn (lambda (_workspace) lsp-jedi-python-library-directories)
-  :initialized-fn (lambda (workspace)
-                    (with-lsp-workspace
-                     workspace
-                     (lsp--set-configuration (lsp-configuration-section "jedi"))))))
+  :initialization-options (lambda () (json-read-from-string (json-encode (lsp-configuration-section "jedi"))))))
 
 (provide 'lsp-jedi)
 ;;; lsp-jedi.el ends here
