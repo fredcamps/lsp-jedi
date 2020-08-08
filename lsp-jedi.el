@@ -111,18 +111,18 @@ autocompletion performance but loses goto definition."
   :package-version '(lsp-mode . "6.1"))
 
 (lsp-register-custom-settings
-  '(("jedi.enable" lsp-jedi-enable)
-    ("jedi.startupMessage" lsp-jedi-startup-message)
-    ("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
-    ("jedi.trace.server" lsp-jedi-trace-server)
-    ("jedi.jediSettings.autoImportModules" lsp-jedi-auto-import-modules)
-    ("jedi.executable.command" lsp-jedi-executable-command)
-    ("jedi.executable.args" lsp-jedi-executable-args)
-    ("jedi.completion.disableSnippets" lsp-jedi-completion-disable-snippets t)
-    ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable t)
-    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
-    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
-    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)))
+ '(("jedi.enable" lsp-jedi-enable)
+   ("jedi.startupMessage" lsp-jedi-startup-message)
+   ("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
+   ("jedi.trace.server" lsp-jedi-trace-server)
+   ("jedi.jediSettings.autoImportModules" lsp-jedi-auto-import-modules)
+   ("jedi.executable.command" lsp-jedi-executable-command)
+   ("jedi.executable.args" lsp-jedi-executable-args)
+   ("jedi.completion.disableSnippets" lsp-jedi-completion-disable-snippets t)
+   ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable t)
+   ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
+   ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
+   ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)))
 
 (lsp-register-client
  (make-lsp-client
