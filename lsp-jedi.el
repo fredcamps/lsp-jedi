@@ -45,9 +45,9 @@
   :type 'string
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-executable-args nil
+(defcustom lsp-jedi-executable-args []
   "Specify the args list passed to your executable."
-  :type '(repeat string)
+  :type 'lsp-string-vector
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-startup-message nil
@@ -97,16 +97,16 @@ non-nil value."
   :type 'boolean
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-auto-import-modules nil
+(defcustom lsp-jedi-auto-import-modules []
   "Modules that will not be analyzed but imported. Improves
 autocompletion performance but loses goto definition."
-  :type '(repeat (string))
+  :type 'lsp-string-vector
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-python-library-directories '("/usr/")
+(defcustom lsp-jedi-python-library-directories ["/usr/"]
   "List of directories which will be considered to be libraries."
   :risky t
-  :type '(repeat string)
+  :type 'lsp-string-vector
   :group 'lsp-jedi
   :package-version '(lsp-mode . "6.1"))
 
@@ -132,7 +132,7 @@ autocompletion performance but loses goto definition."
   :priority -1
   :server-id 'jedi
   :library-folders-fn (lambda (_workspace) lsp-jedi-python-library-directories)
-  :initialization-options (lambda () (json-read-from-string (json-encode (lsp-configuration-section "jedi"))))))
+  :initialization-options (lambda () (lsp-configuration-section "jedi"))))
 
 (provide 'lsp-jedi)
 ;;; lsp-jedi.el ends here
