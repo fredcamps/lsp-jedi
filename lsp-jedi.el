@@ -103,10 +103,10 @@ autocompletion performance but loses goto definition."
   :type 'lsp-string-vector
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-python-library-directories ["/usr/"]
+(defcustom lsp-jedi-python-library-directories '("/usr/")
   "List of directories which will be considered to be libraries."
   :risky t
-  :type 'lsp-string-vector
+  :type '(repeat string)
   :group 'lsp-jedi
   :package-version '(lsp-mode . "6.1"))
 
