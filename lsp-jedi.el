@@ -57,16 +57,16 @@
 
 (defcustom lsp-jedi-markup-kind-preferred nil
   "Type of markup."
-  :type  '(choice (const :tag "plaintext" plaintext)
-                  (const :tag "markdown" markdown)
-                  (const :tag "none" nil))
+  :type  '(choice (const :tag "Plain text" "plaintext")
+                  (const :tag "Markdown" "markdown")
+                  (other :tag "None" nil))
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-trace-server 'verbose
+(defcustom lsp-jedi-trace-server "verbose"
   "Trace server."
-  :type '(choice (const :tag "off" nil)
-                 (const :tag "messages" messages)
-                 (const :tag "verbose" verbose))
+  :type '(choice (const :tag "Disabled" "off")
+                 (const :tag "Messages" "messages")
+                 (const :tag "Verbose" "verbose"))
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-diagnostics-enable nil
