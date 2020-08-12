@@ -47,7 +47,7 @@
 
 (defcustom lsp-jedi-executable-args []
   "Specify the args list passed to your executable."
-  :type '(repeat string)
+  :type 'lsp-string-vector
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-startup-message nil
@@ -57,16 +57,16 @@
 
 (defcustom lsp-jedi-markup-kind-preferred nil
   "Type of markup."
-  :type  '(choice (const :tag "plaintext" plaintext)
-                  (const :tag "markdown" markdown)
-                  (const :tag "none" nil))
+  :type  '(choice (const :tag "Plain text" "plaintext")
+                  (const :tag "Markdown" "markdown")
+                  (other :tag "None" nil))
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-trace-server 'verbose
+(defcustom lsp-jedi-trace-server "verbose"
   "Trace server."
-  :type '(choice (const :tag "off" nil)
-                 (const :tag "messages" messages)
-                 (const :tag "verbose" verbose))
+  :type '(choice (const :tag "Disabled" "off")
+                 (const :tag "Messages" "messages")
+                 (const :tag "Verbose" "verbose"))
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-diagnostics-enable nil
@@ -90,6 +90,19 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
+(defcustom lsp-jedi-completion-disable-snippets nil
+  "If your language client supports CompletionItem snippets but
+you don't like them, disable them by setting this option to a
+non-nil value."
+  :type 'boolean
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-auto-import-modules []
+  "Modules that will not be analyzed but imported. Improves
+autocompletion performance but loses goto definition."
+  :type 'lsp-string-vector
+  :group 'lsp-jedi)
+
 (defcustom lsp-jedi-python-library-directories '("/usr/")
   "List of directories which will be considered to be libraries."
   :risky t
@@ -98,16 +111,18 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :package-version '(lsp-mode . "6.1"))
 
 (lsp-register-custom-settings
-  '(("jedi.enable" lsp-jedi-enable)
-    ("jedi.startupMessage" lsp-jedi-startup-message)
-    ("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
-    ("jedi.trace.server" lsp-jedi-trace-server)
-    ("jedi.executable.command" lsp-jedi-executable-command)
-    ("jedi.executable.args" lsp-jedi-executable-args)
-    ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable)
-    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open)
-    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change)
-    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save)))
+ '(("jedi.enable" lsp-jedi-enable)
+   ("jedi.startupMessage" lsp-jedi-startup-message)
+   ("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
+   ("jedi.trace.server" lsp-jedi-trace-server)
+   ("jedi.jediSettings.autoImportModules" lsp-jedi-auto-import-modules)
+   ("jedi.executable.command" lsp-jedi-executable-command)
+   ("jedi.executable.args" lsp-jedi-executable-args)
+   ("jedi.completion.disableSnippets" lsp-jedi-completion-disable-snippets t)
+   ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable t)
+   ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
+   ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
+   ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)))
 
 (lsp-register-client
  (make-lsp-client
@@ -117,10 +132,7 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :priority -1
   :server-id 'jedi
   :library-folders-fn (lambda (_workspace) lsp-jedi-python-library-directories)
-  :initialized-fn (lambda (workspace)
-                    (with-lsp-workspace
-                     workspace
-                     (lsp--set-configuration (lsp-configuration-section "jedi"))))))
+  :initialization-options (lambda () (lsp-configuration-section "jedi"))))
 
 (provide 'lsp-jedi)
 ;;; lsp-jedi.el ends here
