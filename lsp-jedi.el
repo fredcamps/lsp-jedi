@@ -167,7 +167,7 @@ autocompletion performance but loses goto definition."
   :priority -1
   :server-id 'jedi
   :library-folders-fn (lambda (_workspace) lsp-jedi-python-library-directories)
-  :initialization-options (lambda () (lsp-configuration-section "jedi"))))
+  :initialization-options (lambda () (gethash "jedi" (lsp-configuration-section "jedi")))))
 
 (provide 'lsp-jedi)
 ;;; lsp-jedi.el ends here
