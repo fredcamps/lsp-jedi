@@ -105,7 +105,7 @@ autocompletion performance but loses goto definition."
 (defcustom lsp-jedi-python-library-directories '("/usr/")
   "List of directories which will be considered to be libraries."
   :risky t
-  :type '(repeat string)
+  :type '(repeat directory)
   :group 'lsp-jedi)
 
 (lsp-register-custom-settings
