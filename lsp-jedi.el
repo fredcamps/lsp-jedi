@@ -42,6 +42,11 @@
 (defcustom lsp-jedi-executable-command "jedi-language-server"
   "Specify your jedi-language-server executable."
   :type 'string
+  :initialize 'custom-initialize-default
+  :set (lambda (symbol value)
+         (lsp-dependency 'lsp-jedi
+                         `(:system ,value))
+         (set-default symbol value))
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-executable-args []
