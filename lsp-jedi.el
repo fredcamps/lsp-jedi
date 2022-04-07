@@ -94,6 +94,11 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
+(defcustom lsp-jedi-hover-disable-keyword-all nil
+  "Don't hover on keywords."
+  :type 'boolean
+  :group 'lsp-jedi)
+
 (defcustom lsp-jedi-completion-disable-snippets nil
   "If your language client supports CompletionItem snippets but
 you don't like them, disable them by setting this option to a
@@ -161,6 +166,7 @@ autocompletion performance but loses goto definition."
    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)
+   ("jedi.hover.disable.keyword.all" lsp-jedi-hover-disable-keyword-all t)
    ("jedi.workspace.symbols.maxSymbols" lsp-jedi-workspace-symbols-max-symbols)
    ("jedi.workspace.symbols.ignoreFolders" lsp-jedi-workspace-symbols-ignore-folders)))
 
