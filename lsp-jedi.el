@@ -94,9 +94,29 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
+(defcustom lsp-jedi-hover-enable nil
+  "Enable (or disable) all hover text.  If set to false, will cause the hover method not to be registered to the language server."
+  :type 'boolean
+  :group 'lsp-jedi)
+
 (defcustom lsp-jedi-hover-disable-keyword-all nil
   "Don't hover on keywords."
   :type 'boolean
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-hover-disable-keyword-names []
+  "Don't hover on keywords based on names list."
+  :type 'list
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-hover-disable-keyword-full-names []
+  "Don't hover on keywords based on full names list."
+  :type 'boolean
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-extra-paths []
+  "Don't hover on names keywords."
+  :type 'list
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-completion-disable-snippets nil
@@ -120,6 +140,11 @@ autocompletion performance but loses goto definition."
 
 (defcustom lsp-jedi-case-insensitive-completion t
   "Completions are by default case insensitive."
+  :type 'boolean
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-debug nil
+  "Print jedi debugging messages to stderr."
   :type 'boolean
   :group 'lsp-jedi)
 
@@ -156,6 +181,7 @@ autocompletion performance but loses goto definition."
    ("jedi.trace.server" lsp-jedi-trace-server)
    ("jedi.jediSettings.autoImportModules" lsp-jedi-auto-import-modules)
    ("jedi.jediSettings.caseInsensitiveCompletion" lsp-jedi-case-insensitive-completion t)
+   ("jedi.jediSettings.debug" lsp-jedi-debug)
    ("jedi.executable.command" lsp-jedi-executable-command)
    ("jedi.executable.args" lsp-jedi-executable-args)
    ("jedi.codeAction.nameExtractFunction" lsp-jedi-code-action-name-extract-function)
@@ -166,7 +192,11 @@ autocompletion performance but loses goto definition."
    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)
+   ("jedi.hover.enable" lsp-jedi-hover-enable)
    ("jedi.hover.disable.keyword.all" lsp-jedi-hover-disable-keyword-all t)
+   ("jedi.hover.disable.keyword.names" lsp-jedi-hover-disable-keyword-names)
+   ("jedi.hover.disable.keyword.fullNames" lsp-jedi-hover-disable-keyword-full-names)
+   ("jedi.workspace.extraPaths" lsp-jedi-workspace-extra-paths)
    ("jedi.workspace.symbols.maxSymbols" lsp-jedi-workspace-symbols-max-symbols)
    ("jedi.workspace.symbols.ignoreFolders" lsp-jedi-workspace-symbols-ignore-folders)))
 
