@@ -114,8 +114,8 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-extra-paths []
-  "Don't hover on names keywords."
+(defcustom lsp-jedi-workspace-extra-paths []
+  "Add additional paths for Jedi's analysis.  Useful with vendor directories, packages in a non-standard location, etc."
   :type 'list
   :group 'lsp-jedi)
 
