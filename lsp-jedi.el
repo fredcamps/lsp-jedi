@@ -106,17 +106,17 @@ Run on in-memory document change (eg, while you're editing, without needing to s
 
 (defcustom lsp-jedi-hover-disable-keyword-names []
   "Don't hover on keywords based on names list."
-  :type 'list
+  :type 'lsp-string-vector
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-hover-disable-keyword-full-names []
   "Don't hover on keywords based on full names list."
-  :type 'boolean
+  :type 'lsp-string-vector
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-workspace-extra-paths []
   "Add additional paths for Jedi's analysis.  Useful with vendor directories, packages in a non-standard location, etc."
-  :type 'list
+  :type 'lsp-string-vector
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-completion-disable-snippets nil
