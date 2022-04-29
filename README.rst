@@ -38,6 +38,15 @@ Configure
       (add-to-list 'lsp-disabled-clients 'pyls)
       (add-to-list 'lsp-enabled-clients 'jedi)))
 
+
+Virtual Environment Settings (built-in venv module)
+---------------------------------------------------
+
+.. code-block:: emacs-lisp
+
+   (add-to-list 'lsp-jedi-workspace-extra-paths "/home/me/src/my-project/.venv/lib/python3.10/site-packages")
+
+
 License
 -------
 This project is licensed under the GNU GPL License version 3 - see the `LICENSE`_ file for details
