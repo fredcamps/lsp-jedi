@@ -94,7 +94,7 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :type 'boolean
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-hover-enable nil
+(defcustom lsp-jedi-hover-enable t
   "Enable (or disable) all hover text.  If set to false, will cause the hover method not to be registered to the language server."
   :type 'boolean
   :group 'lsp-jedi)
