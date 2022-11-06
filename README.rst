@@ -33,10 +33,12 @@ Configure
 
   (use-package lsp-jedi
     :ensure t
-    :config
-    (with-eval-after-load "lsp-mode"
-      (add-to-list 'lsp-disabled-clients 'pyls)
-      (add-to-list 'lsp-enabled-clients 'jedi)))
+    ;; Uncomment followings if you've installed python-lsp-server, 
+    ;; which is the Language Sever for pyls.
+    ; :config
+    ; (with-eval-after-load "lsp-mode"
+    ;  (add-to-list 'lsp-disabled-clients 'pyls))
+    )
 
 
 Virtual Environment Settings (built-in venv module)
