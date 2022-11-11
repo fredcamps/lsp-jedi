@@ -32,13 +32,7 @@ Configure
 .. code-block:: emacs-lisp
 
   (use-package lsp-jedi
-    :ensure t
-    ;; Uncomment followings if you've installed python-lsp-server, 
-    ;; which is the Language Sever for pyls.
-    ; :config
-    ; (with-eval-after-load "lsp-mode"
-    ;  (add-to-list 'lsp-disabled-clients 'pyls))
-    )
+    :ensure t)
 
 
 Virtual Environment Settings (built-in venv module)
