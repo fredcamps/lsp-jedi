@@ -204,7 +204,7 @@ autocompletion performance but loses goto definition."
  (make-lsp-client
   :new-connection (lsp-stdio-connection
                    (lambda () lsp-jedi-executable-command))
-  :major-modes '(python-mode cython-mode)
+  :major-modes '(python-mode python-ts-mode cython-mode)
   :priority -1
   :server-id 'jedi
   :library-folders-fn (lambda (_workspace) lsp-jedi-python-library-directories)
