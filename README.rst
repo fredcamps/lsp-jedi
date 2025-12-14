@@ -40,9 +40,8 @@ Virtual Environment Settings (built-in venv module)
 
 .. code-block:: emacs-lisp
 
-   (setq lsp-jedi-workspace-extra-paths
-     (vconcat lsp-jedi-workspace-extra-paths
-              ["/home/me/src/my-project/.venv/lib/python3.10/site-packages"]))
+   (setopt lsp-jedi-workspace-environment-path
+      "/home/me/src/my-project/.venv/bin/python")
 
 
 License
