@@ -34,11 +34,6 @@
   :group 'lsp-mode
   :link '(url-link "https://github.com/fredcamps/lsp-jedi"))
 
-(defcustom lsp-jedi-enable t
-  "If non-nil enable jedi-language-server."
-  :type 'boolean
-  :group 'lsp-jedi)
-
 (defcustom lsp-jedi-executable-command "jedi-language-server"
   "Specify your jedi-language-server executable."
   :type 'string
@@ -54,23 +49,11 @@
   :type 'lsp-string-vector
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-startup-message nil
-  "If non-nil enables jedi-language-server's message on startup.."
-  :type 'boolean
-  :group 'lsp-jedi)
-
-(defcustom lsp-jedi-markup-kind-preferred nil
+(defcustom lsp-jedi-markup-kind-preferred "markdown"
   "Type of markup."
   :type  '(choice (const :tag "Plain text" "plaintext")
                   (const :tag "Markdown" "markdown")
                   (other :tag "None" nil))
-  :group 'lsp-jedi)
-
-(defcustom lsp-jedi-trace-server "verbose"
-  "Trace server."
-  :type '(choice (const :tag "Disabled" "off")
-                 (const :tag "Messages" "messages")
-                 (const :tag "Verbose" "verbose"))
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-diagnostics-enable nil
@@ -85,7 +68,9 @@
 
 (defcustom lsp-jedi-diagnostics-did-change nil
   "When diagnostics are enabled.
-Run on in-memory document change (eg, while you're editing, without needing to save to disk)."
+
+Run on in-memory document change (eg, while you're editing, without
+needing to save to disk)."
   :type 'boolean
   :group 'lsp-jedi)
 
@@ -95,28 +80,49 @@ Run on in-memory document change (eg, while you're editing, without needing to s
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-hover-enable t
-  "Enable (or disable) all hover text.  If set to false, will cause the hover method not to be registered to the language server."
+  "Enable (or disable) all hover text.
+
+If set to false, will cause the hover method not to be registered to the
+language server."
   :type 'boolean
   :group 'lsp-jedi)
 
-(defcustom lsp-jedi-hover-disable-keyword-all nil
-  "Don't hover on keywords."
-  :type 'boolean
-  :group 'lsp-jedi)
-
-(defcustom lsp-jedi-hover-disable-keyword-names []
-  "Don't hover on keywords based on names list."
-  :type 'lsp-string-vector
-  :group 'lsp-jedi)
-
-(defcustom lsp-jedi-hover-disable-keyword-full-names []
-  "Don't hover on keywords based on full names list."
-  :type 'lsp-string-vector
+(defcustom lsp-jedi-hover-disable nil
+  "Disable some hover text."
+  :type '(alist :key-type
+                (choice :tag "jedi-type"
+                        (const "class")
+                        (const "function")
+                        (const "instance")
+                        (const "keyword")
+                        (const "module")
+                        (const "param")
+                        (const "path")
+                        (const "property")
+                        (const "statement"))
+                :value-type
+                (choice (alist :tag "all"
+                               :key-type (const "all")
+                               :value-type (choice (const :tag "true" t)
+                                                   (const :tag "false" :json-false)))
+                        (alist :tag "some"
+                               :key-type (choice (const "names")
+                                                 (const "fullNames"))
+                               :value-type lsp-string-vector)))
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-workspace-extra-paths []
-  "Add additional paths for Jedi's analysis.  Useful with vendor directories, packages in a non-standard location, etc."
+  "Add additional paths for Jedi's analysis.
+
+Useful with vendor directories, packages in a non-standard location,
+etc."
   :type 'lsp-string-vector
+  :group 'lsp-jedi)
+
+(defcustom lsp-jedi-workspace-environment-path nil
+  "The Python executable path, typically the path of a virtual environment."
+  :type '(choice (const :tag "None" nil)
+                 string)
   :group 'lsp-jedi)
 
 (defcustom lsp-jedi-completion-disable-snippets nil
@@ -126,9 +132,18 @@ non-nil value."
   :type 'boolean
   :group 'lsp-jedi)
 
+(defcustom lsp-jedi-completion-ignore-patterns []
+  "A list of regular expressions.
+
+If any regular expression in ignorePatterns matches a completion's name,
+that completion item is not returned to the client."
+  :type 'lsp-string-vector
+  :group 'lsp-jedi)
+
 (defcustom lsp-jedi-auto-import-modules []
-  "Modules that will not be analyzed but imported. Improves
-autocompletion performance but loses goto definition."
+  "Modules that will not be analyzed but imported.
+
+Improves autocompletion performance but loses goto definition."
   :type 'lsp-string-vector
   :group 'lsp-jedi)
 
@@ -174,31 +189,37 @@ autocompletion performance but loses goto definition."
   :type 'lsp-string-vector
   :group 'lsp-jedi)
 
+(defcustom lsp-jedi-semantic-tokens-enable nil
+  "Improves highlighting by providing semantic token information.
+
+Disabled by default, because feature is broken and currently under
+development."
+  :type 'boolean
+  :group 'lsp-jedi)
+
 (lsp-register-custom-settings
- '(("jedi.enable" lsp-jedi-enable)
-   ("jedi.startupMessage" lsp-jedi-startup-message)
-   ("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
-   ("jedi.trace.server" lsp-jedi-trace-server)
+ '(("jedi.markupKindPreferred" lsp-jedi-markup-kind-preferred)
    ("jedi.jediSettings.autoImportModules" lsp-jedi-auto-import-modules)
    ("jedi.jediSettings.caseInsensitiveCompletion" lsp-jedi-case-insensitive-completion t)
-   ("jedi.jediSettings.debug" lsp-jedi-debug)
+   ("jedi.jediSettings.debug" lsp-jedi-debug t)
    ("jedi.executable.command" lsp-jedi-executable-command)
    ("jedi.executable.args" lsp-jedi-executable-args)
    ("jedi.codeAction.nameExtractFunction" lsp-jedi-code-action-name-extract-function)
    ("jedi.codeAction.nameExtractVariable" lsp-jedi-code-action-name-extract-variable)
    ("jedi.completion.disableSnippets" lsp-jedi-completion-disable-snippets t)
    ("jedi.completion.resolveEagerly" lsp-jedi-completion-resolve-eagerly t)
+   ("jedi.completion.ignorePatterns" lsp-jedi-completion-ignore-patterns)
    ("jedi.diagnostics.enable" lsp-jedi-diagnostics-enable t)
    ("jedi.diagnostics.didOpen" lsp-jedi-diagnostics-did-open t)
    ("jedi.diagnostics.didChange" lsp-jedi-diagnostics-did-change t)
    ("jedi.diagnostics.didSave" lsp-jedi-diagnostics-did-save t)
-   ("jedi.hover.enable" lsp-jedi-hover-enable)
-   ("jedi.hover.disable.keyword.all" lsp-jedi-hover-disable-keyword-all t)
-   ("jedi.hover.disable.keyword.names" lsp-jedi-hover-disable-keyword-names)
-   ("jedi.hover.disable.keyword.fullNames" lsp-jedi-hover-disable-keyword-full-names)
+   ("jedi.hover.enable" lsp-jedi-hover-enable t)
+   ("jedi.hover.disable" lsp-jedi-hover-disable)
    ("jedi.workspace.extraPaths" lsp-jedi-workspace-extra-paths)
+   ("jedi.workspace.environmentPath" lsp-jedi-workspace-environment-path)
    ("jedi.workspace.symbols.maxSymbols" lsp-jedi-workspace-symbols-max-symbols)
-   ("jedi.workspace.symbols.ignoreFolders" lsp-jedi-workspace-symbols-ignore-folders)))
+   ("jedi.workspace.symbols.ignoreFolders" lsp-jedi-workspace-symbols-ignore-folders)
+   ("jedi.semanticTokens.enable" lsp-jedi-semantic-tokens-enable t)))
 
 (lsp-register-client
  (make-lsp-client
